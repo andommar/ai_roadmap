@@ -1,6 +1,6 @@
 # https://realpython.com/pytest-python-testing/
 
-from src.dummy_parser import extract_email
+from src.services.parser_service import extract_email
 
 def test_extract_email_with_valid_string():
     """
