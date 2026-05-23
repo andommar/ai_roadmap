@@ -27,6 +27,7 @@ fastapi-cli==0.0.24
 fastapi-cloud-cli==0.17.0
 fastar==0.11.0
 frozendict @ file:///home/task_176175049677026/conda-bld/frozendict_1761750665451/work
+greenlet==3.5.0
 h11 @ file:///home/task_176193111687894/conda-bld/h11_1761931259172/work
 httpcore @ file:///croot/httpcore_1748526048470/work
 httptools==0.7.1
@@ -79,6 +80,7 @@ sentry-sdk==2.58.0
 setuptools==80.10.2
 shellingham @ file:///home/task_176191203629823/conda-bld/shellingham_1761912204430/work
 sniffio @ file:///home/task_176432917442011/conda-bld/sniffio_1764329188237/work
+SQLAlchemy==2.0.49
 starlette==1.0.0
 tomli @ file:///home/task_176829646049141/croot/tomli_1768296482268/work
 tomlkit @ file:///home/task_176289666312502/conda-bld/tomlkit_1762896676945/work
