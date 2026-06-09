@@ -4,5 +4,3 @@ pydantic
 psycopg[binary]
 psycopg-pool
 python-dotenv
-pytest
-httpx
