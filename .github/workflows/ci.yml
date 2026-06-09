@@ -1,0 +1,54 @@
+# Triggers on push to master
+# Checks out the code
+# Sets up Python 3.13
+# Installs dependencies from requirements-dev.txt
+# Runs pytest
+
+name: CI
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ai_project_base
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ai_engineer
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ai_engineer
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.13
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-dev.txt
+    - name: Create database tables
+      run: |
+        psql postgresql://postgres:postgres@localhost:5432/ai_engineer -c "
+        CREATE TABLE IF NOT EXISTS extraction_log (
+          id SERIAL PRIMARY KEY,
+          input_text TEXT NOT NULL,
+          email TEXT,
+          created_at TIMESTAMP DEFAULT NOW()
+        );"
+    - name: Run tests
+      run: |
+        pytest
